@@ -7,8 +7,17 @@ process.on("unhandledRejection", (reason, promise) => {
   });
   
   
-  require("dotenv").config();
-  const { 
+  import dotenv from 'dotenv';
+  dotenv.config();
+  import fs from 'fs';
+  const path = '/sys/class/thermal/thermal_zone0/temp';
+  import { register } from 'module';
+  import stream from 'stream';
+  const internal = stream;
+  import fetch from 'node-fetch';
+import discord from "discord.js";
+
+const {
     Client, 
     IntentsBitField, 
     EmbedBuilder, 
@@ -26,13 +35,8 @@ process.on("unhandledRejection", (reason, promise) => {
     ChannelType,
     GatewayIntentBits,
     Partials,
-  } = require("discord.js");
-  const fs = require("fs");
-  const path = '/sys/class/thermal/thermal_zone0/temp';
-  const { register } = require("module");
-  const { permission } = require("process");
-  const internal = require("stream");
-  const { Module } = require("vm");
+} = discord;
+
   
   const client = new Client({
     intents: [
@@ -49,10 +53,8 @@ process.on("unhandledRejection", (reason, promise) => {
     ],
     partials: [Partials.Channel, Partials.Message, Partials.User]
   });
-  const { joinVoiceChannel, createAudioPlayer, createAudioResource, EndBehaviorType } = require('discord.js');
-  const { error } = require("console");
-  
-  //Settings
+    
+//Settings
   const LOG_OWNER_COMMANDS = true //Enables or disables the logging of the owner of the bot's command usages.
   
   
@@ -107,7 +109,7 @@ process.on("unhandledRejection", (reason, promise) => {
   
   client.on("ready", (c) => {
     console.log(`🟩 ${c.user.tag} is online.`);
-    client.user.setActivity("Beak Hunters", { type: ActivityType.Watching, });
+    client.user.setActivity("Grow A Garden stock", { type: ActivityType.Watching, });
   });
   
   client.on("interactionCreate", async (interaction) => {
@@ -225,6 +227,9 @@ process.on("unhandledRejection", (reason, promise) => {
         */
         case content === "!hinting":
             await handlehinting(message);
+            break;
+        case content === "!stock":
+            await HandleStock(message);
             break;
         default:
     }
@@ -766,5 +771,25 @@ process.on("unhandledRejection", (reason, promise) => {
     }
   }
   
-  
+  async function HandleStock(message) {
+    const button = new ButtonBuilder()
+    .setLabel("Stock's website")
+    .setStyle(ButtonStyle.Link)
+    .setURL("https://growagarden.gg/stocks")
+
+
+    const row = new ActionRowBuilder().addComponents(button);
+
+    await message.channel.send({ components: [row] })
+  }
+  setInterval(() => {
+    const button = new ButtonBuilder()
+    .setLabel("Stock's website")
+    .setStyle(ButtonStyle.Link)
+    .setURL("https://growagarden.gg/stocks")
+
+
+    const row = new ActionRowBuilder().addComponents(button);
+    client.guilds.cache.get("1381270438193270785").channels.cache.get("1381270438721880257").send({content: "Stores have been refreshed, go check them out!", components: [row] })
+  }, 300000); // 300,000 ms = 5 minutes
   client.login(process.env.TOKEN);

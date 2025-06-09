@@ -65,7 +65,7 @@ const {
   const BLACKLIST_ROLE_ID = "1381276347741110292" // Bot blacklist role
   const BOT_PERMS = "1381276394037706782" // Bot perms role
   const OWNER_ID = "612273903443902515"; // Bot owner's ID
-  const STAFF_ROLE_ID = "1381271756727259226";
+  const STAFF_ROLE_ID = "1381354094949830756";
   
   const WARNING_LOG_FILE = 'warnings.log';
   const BLACKLIST_FILE = "blacklist.json";
@@ -234,8 +234,25 @@ const {
         default:
     }
   });
-  
-  
+
+  client.on("guildMemberAdd", (member) => {
+    member.roles.add("1381351092788662334")
+    const channel = member.guild.systemChannel;
+    if (channel) {
+        channel.send(`Welcome <@${member.id}> to ${member.guild.name}!`)
+    }
+  })
+
+
+
+
+
+
+
+
+
+
+
   async function handleWarn(interaction) {
     if (interaction.commandName === 'warn') {
         if (!interaction.member.roles.cache.has(STAFF_ROLE_ID) || !interaction.member.id === OWNER_ID) {
@@ -562,7 +579,7 @@ const {
   
   async function handleReport(interaction) {
     if (interaction.commandName === "report") {
-        const Report_Channel = await client.channels.fetch("1354167077241360424");
+        const Report_Channel = await client.channels.fetch("1381569327261683813");
   
         const reason = interaction.options.getString("reason");
         const user = interaction.options.getMember("user");
@@ -790,8 +807,8 @@ const {
 
 
     const row = new ActionRowBuilder().addComponents(button);
-    client.guilds.cache.get("1381270438193270785").channels.cache.get("1381270438721880257").send({content: "Stores have been refreshed, go check them out!", components: [row] })
-  }, 300000); // 300,000 ms = 5 minutes
+    client.guilds.cache.get("1381270438193270785").channels.cache.get("1381270438721880257").send({content: "Remember to check out the Grow A Garden Store!", components: [row] })
+  }, 1800000); // 300,000 ms = 5 minutes
   client.login(process.env.TOKEN);
   fetch("http://192.168.68.108:3001/api/push/XA87q4VclI?status=up&msg=OK&ping=")
   setInterval(() => {

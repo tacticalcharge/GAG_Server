@@ -1,3 +1,4 @@
 .env
 warnings.log
 blacklist.json
+node_modules

@@ -21,7 +21,7 @@ import {GatewayIntentBits, IntentsBitField, Partials, ActivityType, ButtonBuilde
   const BLACKLIST_ROLE_ID = "1381276347741110292" // Bot blacklist role
   const BOT_PERMS = "1381276394037706782" // Bot perms role
   const OWNER_ID = "612273903443902515"; // Bot owner's ID
-  const STAFF_ROLE_ID = "1381354094949830756";
+  const STAFF_ROLE_ID = "1381730982670897214";
   
   const WARNING_LOG_FILE = 'warnings.log';
   const BLACKLIST_FILE = "blacklist.json";

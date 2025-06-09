@@ -42,20 +42,9 @@ let toggleState = true; // Variable to toggle
 function saveBlacklist() {
     fs.writeFileSync(BLACKLIST_FILE, JSON.stringify([...blacklisted_members], null, 2));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+Commands below
+*/
 async function handleWarn(interaction) {
     if (interaction.commandName === 'warn') {
         if (!interaction.member.roles.cache.has(STAFF_ROLE_ID) || !interaction.member.id === OWNER_ID) {
@@ -488,7 +477,7 @@ async function handleWarn(interaction) {
     console.log("DM recieved.")
     const user = message.author
     const guild = client.guilds.cache.get(process.env.GUILD_ID)
-    const channel = guild.channels.cache.get("1359174393745375312")
+    const channel = guild.channels.cache.get("1381688670079422645")
   
   
     if (user.id === DMING_BLACKLIST_IDS) return message.reply("You have been blacklisted from DMing Nebula Fisch. If you belive this was a mistake, please create a support ticket.")

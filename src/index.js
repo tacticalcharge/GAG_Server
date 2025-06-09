@@ -799,16 +799,6 @@ const {
 
     await message.channel.send({ components: [row] })
   }
-  setInterval(() => {
-    const button = new ButtonBuilder()
-    .setLabel("Stock's website")
-    .setStyle(ButtonStyle.Link)
-    .setURL("https://growagarden.gg/stocks")
-
-
-    const row = new ActionRowBuilder().addComponents(button);
-    client.guilds.cache.get("1381270438193270785").channels.cache.get("1381270438721880257").send({content: "Remember to check out the Grow A Garden Store!", components: [row] })
-  }, 1800000); // 300,000 ms = 5 minutes
   client.login(process.env.TOKEN);
   fetch("http://192.168.68.108:3001/api/push/XA87q4VclI?status=up&msg=OK&ping=")
   setInterval(() => {

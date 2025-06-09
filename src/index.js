@@ -793,3 +793,7 @@ const {
     client.guilds.cache.get("1381270438193270785").channels.cache.get("1381270438721880257").send({content: "Stores have been refreshed, go check them out!", components: [row] })
   }, 300000); // 300,000 ms = 5 minutes
   client.login(process.env.TOKEN);
+  fetch("http://192.168.68.108:3001/api/push/XA87q4VclI?status=up&msg=OK&ping=")
+  setInterval(() => {
+    fetch("http://192.168.68.108:3001/api/push/XA87q4VclI?status=up&msg=OK&ping=")
+  }, 60000);

@@ -187,6 +187,9 @@ import {GatewayIntentBits, IntentsBitField, Partials, ActivityType, ButtonBuilde
         case content === "!stock":
             await HandleStock(message);
             break;
+        case content === "<@1381275299865690113> execute order 66":
+            await message.reply("It will be done, my lord.");
+            break;
         default:
     }
   });
